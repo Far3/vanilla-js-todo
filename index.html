@@ -1,27 +1,16 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
 
-  <body>
-    <h1>Vanillas JavaScript Todo List</h1>
-    <h2>Check the console log, commands are as follows</h2>
-    <ul>
-        <li>todoList.displayTodos();</li>
-          <ul>
-            <li>Lets you know if the list is empty or not</li>
-            <li>Will display an "(X)" if task has been completed or a "( )" if not</li>
-          </ul>
-        <li>todoList.addTodo(todoText);</li>
-        <li>todoList.changeTodo(position, todoText);</li>
-        <li>todoList.deleteTodo(position)</li>
-        <li>todoList.toggleCompleted(position)</li>        
-    </ul>
-    <p>position is the index in the array. TodoText is a string</p>
-    <a href="http://practicaljavascript.net" target="_Blank" rel="noopener">Following the PracticalJavaScript Course</a>
-  </body>
+<body>
+	<h1>Todo List</h1>
+	<button id="displayTodosButton">Display Todos</button>
+	<button id="toggleAllButton">Toggle All</button>
+
+	<script src="script.js"></script>
+</body>
 
 </html>
