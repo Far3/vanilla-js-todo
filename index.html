@@ -7,8 +7,37 @@
 
 <body>
 	<h1>Todo List</h1>
-	<button id="displayTodosButton">Display Todos</button>
-	<button id="toggleAllButton">Toggle All</button>
+	<div>
+		<button onclick="handlers.displayTodos()" >Display Todos</button>
+	</div>
+	<div>
+		<button onclick="handlers.toggleAll()">Toggle All</button>
+	</div>
+	<div>
+		<label for="addTodoTextInput">New todo</label>
+		<input id="addTodoTextInput" type="text">
+		<button onclick="handlers.addTodo()">Add todo</button>
+	</div>
+	<div>
+		<label for="changeTodoPositionInput">Change Todo Position</label>
+		<input id="changeTodoPositionInput" type="number"></input>
+		
+		<label for="changeTodoTextInput">Change Todo Text</label>
+		<input id="changeTodoTextInput" type="text">
+		<button onclick="handlers.changeTodo()">Change Todo</button>
+	</div>
+	<div>
+		<label for="deleteTodoPositionInput">Delete a Todo
+		<input id="deleteTodoPositionInput" type="number">
+		</label>
+		<button onclick="handlers.deleteTodo()" handlers.deleteTodo()>Delete</button>
+	</div>
+		<div>
+		<label for="toggleCompletedPositionInput">Toggle a Todo Completed
+		<input id="toggleCompletedPositionInput" type="number">
+		</label>
+		<button onclick="handlers.toggleCompleted()">Toggle Completed</button>
+	</div>
 
 	<script src="script.js"></script>
 </body>
