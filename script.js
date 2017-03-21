@@ -73,47 +73,65 @@ var handlers = {
 		todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
 		changeTodoPositionInput.value = '';
 		changeTodoTextInput.value = '';
-		view.displayTodos();		
+		view.displayTodos();
 	},
-	deleteTodo: function () {
-		var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
-		todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
-		deleteTodoPositionInput.value = '';
-		view.displayTodos();		
+	deleteTodo: function (position) {
+		todoList.deleteTodo(position);
+		view.displayTodos();
 	},
 	toggleCompleted: function () {
 		var toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
 		todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
 		toggleCompletedPositionInput.value = '';
-		view.displayTodos();		
+		view.displayTodos();
 	},
 	toggleAll: function () {
 		todoList.toggleAll();
-		view.displayTodos();		
+		view.displayTodos();
 	}
-}	
+}
 
 var view = {
-		displayTodos: function() {
-			var todosUl = document.querySelector('ul');
-			todosUl.innerHTML = '';
-			for (var i = 0; i < todoList.todos.length; i++) {
-				
-				var todo = todoList.todos[i];
+	displayTodos: function () {
+		var todosUl = document.querySelector('ul');
+		todosUl.innerHTML = '';
+		for (var i = 0; i < todoList.todos.length; i++) {
 
-				var todoLi = document.createElement('li');
+			var todo = todoList.todos[i];
 
-				var todoTextWithCompletion ='';
-				if(todo.completed) {
-					todoTextWithCompletion = '(X)' + todo.todoText;
+			var todoLi = document.createElement('li');
 
-				} else
-				{
-					todoTextWithCompletion = '(O)' + todo.todoText;
-				}
+			var todoTextWithCompletion = '';
+			if (todo.completed) {
+				todoTextWithCompletion = '(X)' + todo.todoText;
 
-				todoLi.textContent = todoTextWithCompletion;
-				todosUl.appendChild(todoLi);
+			} else {
+				todoTextWithCompletion = '(O)' + todo.todoText;
 			}
+			todoLi.id = i;
+			todoLi.textContent = todoTextWithCompletion;
+			todoLi.appendChild(this.createDeleteButton())
+			todosUl.appendChild(todoLi);
 		}
+	},
+	createDeleteButton: () => {
+		let deleteButton = document.createElement('button');
+		deleteButton.textContent = 'Delete';
+		deleteButton.className = 'deleteButton';
+		return deleteButton;
+	},
+	setupEeventListeners: () => {
+
+		let todosUl = document.querySelector('ul');
+
+		todosUl.addEventListener('click', (e) => {
+			let elementClicked = event.target;
+
+			if (elementClicked.className === 'deleteButton') {
+				handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+			}
+		});
 	}
+};
+
+view.setupEeventListeners();
